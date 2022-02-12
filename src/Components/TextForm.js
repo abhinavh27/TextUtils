@@ -21,19 +21,26 @@ export default function TextForm(props)
   const handleAlternateCase=()=>{
     var newText;
     var chars = text.toLowerCase().split("");
-  for (var i = 1; i < chars.length; i += 2) {
-    chars[i] = chars[i].toUpperCase();
-  }
-  newText=chars.join("");
-  setText(newText);
+    for (var i = 1; i < chars.length; i += 2) {
+      chars[i] = chars[i].toUpperCase();
+    }
+    newText=chars.join("");
+    setText(newText);
   }
   const handleClear=()=>{
     setText("");
   }
   const calcNoOfWords=(text)=>{
     if (text.length>=1){
-      let noOfWords=text.trim().split(" ").length;
+      let noOfWords=text.trim().split(/\s/).length;
       return noOfWords;
+    }
+    return 0;
+  }
+  const calcNoOfLines=(text)=>{
+    if (text.length>=1){
+      let lines = text.trim().split(/\r\n|\r|\n/);
+      return lines.length;
     }
     return 0;
   }
@@ -52,7 +59,7 @@ export default function TextForm(props)
       </div>
       <div className="container">
         <div className="mx-2 my-2">
-          <p>Word Count: {calcNoOfWords(text)}</p>
+          <p>Word Count: {calcNoOfWords(text)} | Line Count: {calcNoOfLines(text)}</p>
         </div>
       </div>
     </>
