@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
-export default function TextForm(props)
+export default function CaseConvert(props)
 {
   const [text, setText] = useState("");
 
@@ -27,6 +27,20 @@ export default function TextForm(props)
     newText=chars.join("");
     setText(newText);
   }
+
+  const handleSentenceCase=()=>{
+    var newText;
+    var chars=text.trim().split(".");
+    for (var i=0;i<chars.length;i++){
+      if (chars[i][0] === " "){
+        chars[i]=chars[i].charAt(1).toUpperCase()+chars[i].slice(2);
+      }
+      chars[i]= " " + chars[i].charAt(0).toUpperCase()+chars[i].slice(1);
+    }
+    newText=chars.join(".").trim();
+    setText(newText);
+  }
+
   const handleClear=()=>{
     setText("");
   }
@@ -54,7 +68,8 @@ export default function TextForm(props)
       </div>
       <div className="btn btn-primary" onClick={handleUpperCase}>Convert to upper case</div>
       <div className="btn btn-primary mx-2" onClick={handleLowerCase}>Convert to lower case</div>
-      <div className="btn btn-primary mx-2" onClick={handleAlternateCase}>Alternating Case</div>
+      <div className="btn btn-primary mx-1" onClick={handleAlternateCase}>Alternating Case</div>
+      <div className="btn btn-primary mx-1" onClick={handleSentenceCase}>Sentence Case</div>
       <div className="btn btn-primary mx-2" onClick={handleClear}>Clear</div>
       </div>
       <div className="container">
@@ -66,6 +81,6 @@ export default function TextForm(props)
   );
 }
 
-TextForm.propTypes={heading :PropTypes.string.isRequired}
+CaseConvert.propTypes={heading :PropTypes.string.isRequired}
 
-TextForm.defaultProps={heading:"Set heading here"}
+CaseConvert.defaultProps={heading:"Set heading here"}
