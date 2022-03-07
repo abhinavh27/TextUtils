@@ -4,6 +4,7 @@ TextUtils is an app which has some utility functions for modifying text like:
 * Lower case
 * Sentence case
 * Alternating case
+* Snake case
 
 ## Available Scripts
 

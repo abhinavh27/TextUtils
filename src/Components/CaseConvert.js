@@ -41,6 +41,16 @@ export default function CaseConvert(props)
     setText(newText);
   }
 
+  const handleSnakeCase=()=>{
+    var newText;
+    var chars=text.trim().split(/\s/);
+    for(var i=0;i<chars.length;i++){
+      chars[i]=chars[i].toLowerCase()
+    }
+    newText=chars.join("_").trim();
+    setText(newText);
+  }
+
   const handleClear=()=>{
     setText("");
   }
@@ -70,6 +80,7 @@ export default function CaseConvert(props)
       <div className="btn btn-primary mx-2" onClick={handleLowerCase}>Convert to lower case</div>
       <div className="btn btn-primary mx-1" onClick={handleAlternateCase}>Alternating Case</div>
       <div className="btn btn-primary mx-1" onClick={handleSentenceCase}>Sentence Case</div>
+      <div className="btn btn-primary mx-1" onClick={handleSnakeCase}>Snake Case</div>
       <div className="btn btn-primary mx-2" onClick={handleClear}>Clear</div>
       </div>
       <div className="container">
